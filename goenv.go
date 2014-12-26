@@ -1,7 +1,6 @@
 package goenv
 
 import "os"
-import "errors"
 import "io/ioutil"
 
 // Load - Loads and parses the contents of `.env`.
@@ -10,7 +9,7 @@ func Load() error {
 	// read .env
 	contents, fileErr := ioutil.ReadFile("./.env")
 	if fileErr != nil {
-		return errors.New("Could not open file `./.env`")
+		return fileErr
 	}
 
 	// parse .env conents

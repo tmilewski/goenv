@@ -34,7 +34,7 @@ func TestLoadFileNotFound(t *testing.T) {
 	removeEnv(false)
 
 	err := Load()
-	assertEqual(t, "Could not open file `./.env`", err.Error())
+	assertEqual(t, "open ./.env: no such file or directory", err.Error())
 }
 
 func TestLoadFormatError(t *testing.T) {
