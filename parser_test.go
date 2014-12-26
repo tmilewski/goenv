@@ -1,29 +1,11 @@
 package goenv
 
-import "fmt"
 import "os"
 import "testing"
-import "reflect"
-import "github.com/stretchr/testify/assert"
 
 func env(t *testing.T, contents string, expected map[string]string) {
 	actual, _ := parse(contents)
-	eq := reflect.DeepEqual(expected, actual)
-
-	var res bool
-	if eq {
-		res = true
-	} else {
-		res = false
-
-		fmt.Println(">>>>>>>>>>>>>>>>>>>>>> Expected")
-		fmt.Println(expected)
-		fmt.Println("----------------------")
-		fmt.Println(actual)
-		fmt.Println("<<<<<<<<<<<<<<<<<<<<<< Actual")
-	}
-
-	assert.Equal(t, true, res)
+	assertEqual(t, expected, actual)
 }
 
 func TestParser(t *testing.T) {
@@ -126,15 +108,14 @@ func TestFormatError(t *testing.T) {
 	actual, err := parse("lol$wut")
 
 	// Format Error
-	assert.Equal(t, 0, len(actual))
-	assert.NotNil(t, err)
-	assert.Equal(t, "FormatError: Line `lol$wut` doesn't match format", err.Error())
+	assertEqual(t, 0, len(actual))
+	assertEqual(t, "FormatError: Line `lol$wut` doesn't match format", err.Error())
 
 	// Comment
 	_, err = parse("# BAR")
-	assert.Nil(t, err)
+	assertNil(t, err)
 
 	// Blank Line
 	_, err = parse("   \n# BAR")
-	assert.Nil(t, err)
+	assertNil(t, err)
 }
