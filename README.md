@@ -61,9 +61,8 @@ GoEnv is tested under 1.2, 1.3, 1.4.
 
 ## What's Next
 
-1. Remove the only dependency: `assert`
-2. Substituting commands: `CWD=$(pwd)`
-3. Make regular expressions more readable.
+1. Substituting commands: `CWD=$(pwd)`
+2. Make regular expressions more readable.
 
 ## Contributing
 
