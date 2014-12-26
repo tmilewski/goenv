@@ -27,4 +27,4 @@ _testmain.go
 *.html
 
 # Environment Variables
-.env
+/.env
